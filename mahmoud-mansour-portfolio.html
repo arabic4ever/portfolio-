@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mahmoud Mansour — Arabic AI Language Specialist</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Spectral:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Noto+Naskh+Arabic:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F4EEE2;
+    --bg-2:#ECE3D1;
+    --paper:#FBF7EE;
+    --ink:#1E1B16;
+    --ink-soft:#514B40;
+    --ink-faint:#857C6C;
+    --accent:#8A2B26;
+    --accent-2:#B4863C;
+    --line:rgba(30,27,22,.13);
+    --line-soft:rgba(30,27,22,.07);
+    --shadow:0 1px 2px rgba(30,27,22,.04),0 8px 28px rgba(30,27,22,.07);
+    --display:'Fraunces',Georgia,serif;
+    --body:'Spectral',Georgia,serif;
+    --mono:'JetBrains Mono',ui-monospace,monospace;
+    --arabic:'Noto Naskh Arabic',serif;
+    --maxw:1180px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth;scroll-padding-top:84px}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:var(--body);
+    font-size:17px;
+    line-height:1.62;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  ::selection{background:var(--accent);color:var(--bg)}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 32px}
+
+  /* paper grain texture */
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+    opacity:.5;mix-blend-mode:multiply;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.035'/%3E%3C/svg%3E");
+  }
+
+  /* ---------- NAV ---------- */
+  header.nav{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    background:rgba(244,238,226,.82);
+    backdrop-filter:saturate(1.4) blur(12px);
+    border-bottom:1px solid transparent;
+    transition:border-color .3s ease,background .3s ease;
+  }
+  header.nav.scrolled{border-color:var(--line);background:rgba(244,238,226,.94)}
+  .nav-inner{max-width:var(--maxw);margin:0 auto;padding:0 32px;height:68px;
+    display:flex;align-items:center;justify-content:space-between}
+  .brand{font-family:var(--display);font-weight:600;font-size:1.18rem;letter-spacing:-.01em;display:flex;align-items:center;gap:10px}
+  .brand .mark{width:30px;height:30px;display:grid;place-items:center;border:1.5px solid var(--accent);color:var(--accent);
+    font-family:var(--mono);font-size:.72rem;border-radius:50%;font-weight:500}
+  .nav-links{display:flex;gap:30px;align-items:center}
+  .nav-links a{font-family:var(--mono);font-size:.74rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);
+    position:relative;padding:4px 0;transition:color .25s}
+  .nav-links a::after{content:"";position:absolute;left:0;bottom:-1px;width:0;height:1.5px;background:var(--accent);transition:width .3s ease}
+  .nav-links a:hover{color:var(--ink)}
+  .nav-links a:hover::after{width:100%}
+  .nav-toggle{display:none;background:none;border:1px solid var(--line);border-radius:8px;padding:8px 10px;cursor:pointer;font-family:var(--mono);font-size:.7rem;color:var(--ink)}
+
+  /* ---------- HERO ---------- */
+  .hero{position:relative;padding:160px 0 90px;overflow:hidden;z-index:1}
+  .hero .arabic-bg{
+    position:absolute;right:-3%;top:42%;transform:translateY(-50%);
+    font-family:var(--arabic);font-size:clamp(7rem,22vw,20rem);color:var(--accent);
+    opacity:.06;line-height:.8;pointer-events:none;white-space:nowrap;direction:rtl;font-weight:500;z-index:0;
+  }
+  .hero-inner{position:relative;z-index:2;max-width:880px}
+  .eyebrow{font-family:var(--mono);font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);
+    display:flex;align-items:center;gap:14px;margin-bottom:26px}
+  .eyebrow::before{content:"";width:42px;height:1px;background:var(--accent)}
+  h1.name{font-family:var(--display);font-weight:600;font-size:clamp(3rem,8vw,6.2rem);line-height:.95;letter-spacing:-.025em}
+  h1.name em{font-style:italic;color:var(--accent)}
+  .roles{margin-top:30px;font-size:clamp(1.15rem,2.4vw,1.5rem);color:var(--ink-soft);max-width:680px;line-height:1.45}
+  .roles b{color:var(--ink);font-weight:600}
+  .hero-meta{margin-top:42px;display:flex;flex-wrap:wrap;gap:12px}
+  .chip{font-family:var(--mono);font-size:.76rem;letter-spacing:.03em;padding:9px 16px;border:1px solid var(--line);
+    border-radius:999px;background:var(--paper);color:var(--ink-soft);display:inline-flex;align-items:center;gap:8px;transition:.25s}
+  .chip:hover{border-color:var(--accent);color:var(--ink);transform:translateY(-1px)}
+  .chip svg{width:14px;height:14px;stroke:var(--accent);fill:none;stroke-width:1.6}
+
+  /* ---------- SECTION SCAFFOLD ---------- */
+  section{position:relative;z-index:1;padding:78px 0;border-top:1px solid var(--line-soft)}
+  .sec-head{display:flex;align-items:baseline;gap:22px;margin-bottom:50px;flex-wrap:wrap}
+  .sec-num{font-family:var(--mono);font-size:.8rem;color:var(--accent);letter-spacing:.05em;padding-top:8px}
+  .sec-title{font-family:var(--display);font-weight:600;font-size:clamp(1.9rem,4vw,2.9rem);letter-spacing:-.02em;line-height:1.05}
+  .sec-sub{flex-basis:100%;color:var(--ink-faint);font-size:1rem;max-width:640px;margin-top:-30px;padding-left:0}
+
+  /* ---------- PROFILE ---------- */
+  .profile-grid{display:grid;grid-template-columns:1.6fr 1fr;gap:56px;align-items:start}
+  .lead{font-size:1.32rem;line-height:1.55;color:var(--ink);font-weight:400}
+  .lead .hl{color:var(--accent);font-style:italic}
+  .profile-body p{margin-top:20px;color:var(--ink-soft)}
+  .stat-stack{display:flex;flex-direction:column;gap:0;border-top:1px solid var(--line)}
+  .stat{padding:20px 0;border-bottom:1px solid var(--line);display:flex;align-items:baseline;gap:18px}
+  .stat .v{font-family:var(--display);font-size:2.4rem;font-weight:600;color:var(--accent);line-height:1;min-width:96px}
+  .stat .l{font-size:.98rem;color:var(--ink-soft);line-height:1.35}
+
+  /* ---------- EXPERIENCE ---------- */
+  .filter-row{display:flex;gap:10px;margin-bottom:40px;flex-wrap:wrap}
+  .filter-btn{font-family:var(--mono);font-size:.74rem;letter-spacing:.05em;text-transform:uppercase;padding:8px 16px;
+    border:1px solid var(--line);border-radius:999px;background:transparent;color:var(--ink-soft);cursor:pointer;transition:.22s}
+  .filter-btn:hover{border-color:var(--accent);color:var(--ink)}
+  .filter-btn.active{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+  .timeline{display:flex;flex-direction:column}
+  .job{display:grid;grid-template-columns:172px 1fr;gap:34px;padding:30px 0;border-top:1px solid var(--line);
+    transition:opacity .4s ease,transform .4s ease}
+  .job:first-child{border-top:none}
+  .job.hide{display:none}
+  .job-when{font-family:var(--mono);font-size:.78rem;color:var(--ink-faint);letter-spacing:.02em;padding-top:5px}
+  .job-when .tag{display:inline-block;margin-top:12px;padding:3px 10px;border-radius:6px;font-size:.66rem;letter-spacing:.08em;text-transform:uppercase}
+  .tag.ai{background:rgba(138,43,38,.1);color:var(--accent)}
+  .tag.edu{background:rgba(180,134,60,.16);color:#8a6322}
+  .job-title{font-family:var(--display);font-size:1.42rem;font-weight:600;letter-spacing:-.015em;line-height:1.18}
+  .job-org{font-size:1rem;color:var(--accent);margin-top:4px;font-weight:500}
+  .job-org span{color:var(--ink-faint);font-weight:400}
+  .job ul{list-style:none;margin-top:16px;display:flex;flex-direction:column;gap:9px}
+  .job ul li{position:relative;padding-left:20px;color:var(--ink-soft);font-size:.99rem;line-height:1.5}
+  .job ul li::before{content:"";position:absolute;left:0;top:.62em;width:6px;height:6px;border:1px solid var(--accent);transform:rotate(45deg)}
+
+  /* ---------- COVER LETTER ---------- */
+  .letter{background:var(--paper);border:1px solid var(--line);border-radius:4px;box-shadow:var(--shadow);
+    padding:clamp(34px,5vw,68px);position:relative;max-width:900px;margin:0 auto}
+  .letter::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--accent)}
+  .letter .salut{font-family:var(--display);font-size:1.5rem;font-weight:500;margin-bottom:26px}
+  .letter p{margin-bottom:20px;color:var(--ink-soft);font-size:1.04rem;line-height:1.68}
+  .letter p .hl{color:var(--ink);font-weight:500}
+  .letter .sign{margin-top:34px;font-family:var(--display);font-size:1.7rem;font-weight:600;color:var(--accent);font-style:italic}
+  .letter .sign small{display:block;font-family:var(--mono);font-style:normal;font-size:.72rem;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--ink-faint);margin-top:8px;font-weight:400}
+
+  /* ---------- EXPERTISE ---------- */
+  .exp-grid{display:grid;grid-template-columns:1fr 1fr;gap:30px}
+  .exp-card{background:var(--paper);border:1px solid var(--line);border-radius:4px;padding:36px;box-shadow:var(--shadow)}
+  .exp-card h3{font-family:var(--display);font-size:1.45rem;font-weight:600;display:flex;align-items:center;gap:12px;margin-bottom:24px}
+  .exp-card h3 .n{font-family:var(--mono);font-size:.8rem;color:var(--accent);border:1px solid var(--accent);border-radius:50%;
+    width:30px;height:30px;display:grid;place-items:center;font-weight:500;flex-shrink:0}
+  .tags{display:flex;flex-wrap:wrap;gap:9px}
+  .tags span{font-size:.9rem;padding:7px 13px;background:var(--bg-2);border-radius:999px;color:var(--ink-soft);
+    border:1px solid transparent;transition:.2s}
+  .tags span:hover{border-color:var(--accent);color:var(--ink)}
+
+  /* ---------- CREDENTIALS ---------- */
+  .cred-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px}
+  .cred-col h3{font-family:var(--mono);font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);
+    margin-bottom:24px;padding-bottom:12px;border-bottom:1px solid var(--line)}
+  .edu-item{margin-bottom:22px}
+  .edu-item .deg{font-family:var(--display);font-size:1.28rem;font-weight:600;line-height:1.2}
+  .edu-item .inst{color:var(--ink-soft);font-size:.98rem;margin-top:2px}
+  .cert-list{list-style:none;columns:1}
+  .cert-list li{padding:11px 0;border-bottom:1px solid var(--line-soft);display:flex;justify-content:space-between;gap:16px;align-items:baseline}
+  .cert-list li .c-name{color:var(--ink-soft);font-size:.99rem;line-height:1.4}
+  .cert-list li .c-year{font-family:var(--mono);font-size:.74rem;color:var(--ink-faint);flex-shrink:0}
+  .pub-block{margin-top:34px}
+  .pub-block .book{font-family:var(--display);font-style:italic;font-size:1.15rem;color:var(--ink)}
+  .pub-block .meta{font-size:.92rem;color:var(--ink-faint);margin-top:4px}
+  .research li{color:var(--ink-soft);font-size:.98rem;padding:6px 0;padding-left:18px;position:relative;list-style:none}
+  .research li::before{content:"›";position:absolute;left:0;color:var(--accent)}
+
+  /* ---------- CONTACT ---------- */
+  .contact{padding-bottom:60px}
+  .contact-card{background:var(--ink);color:var(--bg);border-radius:6px;padding:clamp(40px,6vw,76px);position:relative;overflow:hidden}
+  .contact-card .ar{position:absolute;right:-2%;bottom:-30%;font-family:var(--arabic);font-size:16rem;color:var(--accent-2);
+    opacity:.1;direction:rtl;line-height:.8;pointer-events:none}
+  .contact-card .eyebrow{color:var(--accent-2)}
+  .contact-card .eyebrow::before{background:var(--accent-2)}
+  .contact-card h2{font-family:var(--display);font-size:clamp(2rem,5vw,3.4rem);font-weight:600;line-height:1.05;letter-spacing:-.02em;
+    margin-bottom:36px;max-width:680px;position:relative;z-index:2}
+  .contact-links{display:flex;flex-wrap:wrap;gap:14px;position:relative;z-index:2}
+  .c-link{display:inline-flex;align-items:center;gap:11px;padding:14px 22px;border:1px solid rgba(244,238,226,.25);border-radius:999px;
+    font-family:var(--mono);font-size:.82rem;letter-spacing:.02em;color:var(--bg);transition:.25s}
+  .c-link:hover{background:var(--bg);color:var(--ink);border-color:var(--bg);transform:translateY(-2px)}
+  .c-link svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.6}
+  .print-btn{background:var(--accent-2);color:var(--ink);border:none;cursor:pointer}
+  .print-btn:hover{background:var(--bg)}
+
+  footer{padding:38px 0;text-align:center;border-top:1px solid var(--line);font-family:var(--mono);
+    font-size:.74rem;letter-spacing:.04em;color:var(--ink-faint)}
+
+  /* ---------- REVEAL ---------- */
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+
+  /* ---------- RESPONSIVE ---------- */
+  @media(max-width:880px){
+    .nav-links{display:none}
+    .nav-links.open{display:flex;position:absolute;top:68px;left:0;right:0;flex-direction:column;gap:0;
+      background:var(--bg);border-bottom:1px solid var(--line);padding:8px 32px 18px}
+    .nav-links.open a{padding:14px 0;border-bottom:1px solid var(--line-soft)}
+    .nav-toggle{display:block}
+    .profile-grid{grid-template-columns:1fr;gap:40px}
+    .exp-grid,.cred-grid{grid-template-columns:1fr;gap:30px}
+    .job{grid-template-columns:1fr;gap:12px}
+    .job-when .tag{margin-top:0;margin-left:10px}
+  }
+  @media(max-width:520px){
+    .wrap{padding:0 22px}.nav-inner{padding:0 22px}
+    .hero{padding:130px 0 70px}
+    body{font-size:16px}
+  }
+
+  /* ---------- PRINT ---------- */
+  @media print{
+    header.nav,.nav-toggle,.filter-row,.print-btn,.hero .arabic-bg,.contact-card .ar,body::before{display:none!important}
+    body{background:#fff;font-size:11pt}
+    section{padding:18px 0;page-break-inside:avoid}
+    .job.hide{display:grid!important}
+    .contact-card{background:#fff;color:#000;border:1px solid #ccc}
+    .contact-card .c-link{color:#000;border-color:#999}
+    .reveal{opacity:1!important;transform:none!important}
+  }
+</style>
+</head>
+<body>
+
+<header class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="#top" class="brand"><span class="mark">م</span>Mahmoud Mansour</a>
+    <nav class="nav-links" id="navlinks">
+      <a href="#profile">Profile</a>
+      <a href="#experience">Experience</a>
+      <a href="#letter">Letter</a>
+      <a href="#expertise">Expertise</a>
+      <a href="#credentials">Credentials</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <button class="nav-toggle" id="navtoggle">MENU</button>
+  </div>
+</header>
+
+<a id="top"></a>
+<section class="hero" style="border-top:none">
+  <div class="arabic-bg">بالعربي</div>
+  <div class="wrap hero-inner">
+    <div class="eyebrow reveal">Ashburn · Virginia · USA</div>
+    <h1 class="name reveal">Mahmoud<br><em>Mansour</em></h1>
+    <p class="roles reveal">
+      <b>Arabic AI Language Specialist</b> · AI Safety &amp; Red-Teaming · Senior Data Quality Analyst ·
+      Linguist &amp; Curriculum Expert. Twenty-plus years bridging Arabic linguistics, education, and machine-learning evaluation.
+    </p>
+    <div class="hero-meta reveal">
+      <a class="chip" href="mailto:mmansour1288@icloud.com">
+        <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+        mmansour1288@icloud.com</a>
+      <a class="chip" href="tel:+13017677762">
+        <svg viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.4-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2Z"/></svg>
+        (301) 767-7762</a>
+      <span class="chip"><svg viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>MSA · Egyptian Arabic · English</span>
+    </div>
+  </div>
+</section>
+
+<!-- PROFILE -->
+<section id="profile">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-num">01</span>
+      <h2 class="sec-title">Profile</h2>
+    </div>
+    <div class="profile-grid">
+      <div class="profile-body reveal">
+        <p class="lead">Experienced Arabic linguist, AI language specialist, educator, and curriculum developer who works at the <span class="hl">intersection of language and machine learning</span>.</p>
+        <p>Specialized in Modern Standard Arabic and Egyptian Arabic, with deep expertise across data annotation, LLM evaluation, AI safety and red-teaming, multimodal translation, response ranking, and linguistic quality assurance — grounded in a foundation of ACTFL ILR guidelines and standards-based assessment.</p>
+        <p>Published Arabic textbooks (<em>Bil-Araby El-FaseeH</em>) and research on diglossia and language attitudes anchor this work in culturally authentic, dialect-accurate language rather than translated approximations. Across every domain, the constant is rigor: structured evaluation against clear criteria, accurate documentation, and reliable delivery under deadlines.</p>
+      </div>
+      <div class="stat-stack reveal">
+        <div class="stat"><span class="v">20+</span><span class="l">years in Arabic linguistics, instruction &amp; assessment</span></div>
+        <div class="stat"><span class="v">2+</span><span class="l">years in AI evaluation, annotation &amp; safety review</span></div>
+        <div class="stat"><span class="v">150+</span><span class="l">ILR Oral Proficiency Interviews rated</span></div>
+        <div class="stat"><span class="v">2</span><span class="l">published Arabic textbooks (Beginner &amp; Intermediate)</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-num">02</span>
+      <h2 class="sec-title">Experience</h2>
+    </div>
+    <div class="filter-row reveal">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="ai">AI &amp; Language Technology</button>
+      <button class="filter-btn" data-filter="edu">Linguistics &amp; Education</button>
+    </div>
+    <div class="timeline">
+
+      <article class="job reveal" data-cat="ai">
+        <div class="job-when">Dec 2024 – Present<span class="tag ai">AI</span></div>
+        <div>
+          <div class="job-title">Senior Data Quality Analyst — AI Trainer</div>
+          <div class="job-org">Cohere <span>· Toronto, Canada · Remote Freelance</span></div>
+          <ul>
+            <li>Translated multimodal ML and human-authored texts between English and Arabic, applying International Phonetics to capture phonological nuance in Standard Arabic and regional variation.</li>
+            <li>Labeled and ranked machine-learning data in Modern Standard Arabic; scrutinized and corrected inaccuracies to maintain high-standard text and speech datasets.</li>
+            <li>Evaluated Arabic AI outputs for style-guide adherence, dialectal consistency, and safety, labeling safety content across multiple categories.</li>
+            <li>Flagged opportunities to improve data quality and model performance, collaborating cross-functionally on dialect and pronunciation norms.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="job reveal" data-cat="ai">
+        <div class="job-when">Oct 2024 – Dec 2025<span class="tag ai">AI</span></div>
+        <div>
+          <div class="job-title">AI Data Annotator</div>
+          <div class="job-org">Translated / Uber Technologies <span>· Rome, Italy · Remote Freelance</span></div>
+          <ul>
+            <li>Labeled and categorized multilingual English and Arabic data, annotating phonetic detail in audio and textual datasets.</li>
+            <li>Evaluated ML model outputs for quality, accuracy, and instruction adherence in Arabic speech and transcription tasks.</li>
+            <li>Contributed to annotation guidelines and proposed new entity categories for organizing annotated Arabic speech data.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="job reveal" data-cat="ai">
+        <div class="job-when">Feb 2025 – Dec 2025<span class="tag ai">AI</span></div>
+        <div>
+          <div class="job-title">Voice Acting for AI Training</div>
+          <div class="job-org">Outlier AI <span>· Oakland, California · Freelance</span></div>
+          <ul>
+            <li>Recorded Arabic conversations across varied emotions, accents, and modulations for voice-model training.</li>
+            <li>Provided expert guidance on accents and regional dialects, mapping subtle sound variations through phonetic transcription.</li>
+            <li>Evaluated and improved AI audio output for clarity and authenticity; developed training materials for voice modulation and inflection.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="job reveal" data-cat="ai">
+        <div class="job-when">Apr 2024 – Dec 2025<span class="tag ai">AI · Safety</span></div>
+        <div>
+          <div class="job-title">AI Data Annotator &amp; Safety Evaluator</div>
+          <div class="job-org">Invisible Technologies <span>· Remote Freelance</span></div>
+          <ul>
+            <li>Performed large-scale annotation for generative AI models across Arabic (MSA and Egyptian) and English text.</li>
+            <li>Executed safety evaluations to detect nuanced hate speech, violent rhetoric, and misinformation in Arabic voice and text outputs.</li>
+            <li>Applied cultural and linguistic context to improve model safety; helped refine Arabic annotation standards for safety tasks.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="job reveal" data-cat="ai">
+        <div class="job-when">Jan 2024 – Sep 2024<span class="tag ai">AI</span></div>
+        <div>
+          <div class="job-title">AI Data Annotator</div>
+          <div class="job-org">Alignerr <span>· Remote Freelance</span></div>
+          <ul>
+            <li>Annotated and evaluated text and audio datasets for LLM training, specializing in Arabic sentiment, intent, and entity recognition.</li>
+            <li>Reviewed and verified other contributors' annotations for phonetic consistency and accuracy.</li>
+            <li>Provided detailed feedback to improve Arabic speech recognition and synthesis accuracy.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="job reveal" data-cat="edu">
+        <div class="job-when">Jun 2019 – Present<span class="tag edu">Education</span></div>
+        <div>
+          <div class="job-title">Arabic Consultant — Certified ACTFL ILR OPI Tester &amp; Rater</div>
+          <div class="job-org">ACTFL <span>· Alexandria, VA · Freelance</span></div>
+          <ul>
+            <li>Conducted and rated ILR Oral Proficiency Interviews in Egyptian Arabic, assessing pronunciation, intonation, and dialectal accuracy.</li>
+            <li>Completed Factor Grid Analyses aligned with ACTFL ILR standards; assessed more than 150 OPI tests.</li>
+            <li>Participated in ongoing workshops to refine phonetic rating criteria for Arabic OPI examinations.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="job reveal" data-cat="edu">
+        <div class="job-when">Feb 2020 – Nov 2025<span class="tag edu">Education</span></div>
+        <div>
+          <div class="job-title">Instructor &amp; Program Director — Arabic for Adults</div>
+          <div class="job-org">Qurtuba Institute <span>· Sterling, VA · Part Time</span></div>
+          <ul>
+            <li>Designed and launched the Arabic for Adults program, integrating International Phonetics training for accurate pronunciation.</li>
+            <li>Taught Elementary, Intermediate, and Advanced courses on Canvas LMS with phonetic drills and accent coaching.</li>
+            <li>Developed placement tests, syllabi, assignments, quizzes, and exams; delivered end-of-quarter reports and recommendations.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="job reveal" data-cat="edu">
+        <div class="job-when">2022 – 2024<span class="tag edu">Curriculum</span></div>
+        <div>
+          <div class="job-title">Arabic Test Developer — Electronic Reading Comprehension</div>
+          <div class="job-org">City University of New York (CUNY), Queens College</div>
+          <ul>
+            <li>Developed reading passages and vocabulary materials for 2nd–9th grade native Arabic speakers.</li>
+            <li>Designed standards-aligned multiple-choice questions and reviewed team-developed materials.</li>
+            <li>Submitted culturally relevant Arabic passages matching curricula in Arab countries.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="job reveal" data-cat="edu">
+        <div class="job-when">2022 – 2023<span class="tag edu">Curriculum</span></div>
+        <div>
+          <div class="job-title">Arabic Curriculum Specialist</div>
+          <div class="job-org">North Carolina Virtual Public Schools (NCVPS)</div>
+          <ul>
+            <li>Created course outlines, module descriptions, and learning objectives aligned with state standards.</li>
+            <li>Integrated educational technology into instructional materials and reviewed content for consistency.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="job reveal" data-cat="edu">
+        <div class="job-when">2020 – 2021<span class="tag edu">Curriculum</span></div>
+        <div>
+          <div class="job-title">Arabic Curriculum Specialist (Modern Standard Arabic)</div>
+          <div class="job-org">Transparent Language Inc. <span>· Nashua, NH</span></div>
+          <ul>
+            <li>Delivered weekly reading and listening materials with rubrics and difficulty-driver analyses.</li>
+            <li>Added discussion prompts and ensured high-quality content delivery.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="job reveal" data-cat="edu">
+        <div class="job-when">Jun – Jul 2020<span class="tag edu">QC</span></div>
+        <div>
+          <div class="job-title">ACTFL ILR Reading Proficiency Test (RPT) — QC Consultant</div>
+          <div class="job-org">ACTFL <span>· Alexandria, VA</span></div>
+          <ul>
+            <li>Reviewed and modified 40+ ILR reading passages (ILR1–ILR5) against proficiency guidelines.</li>
+            <li>Facilitated standard-setting workshops and benchmarking activities for Arabic reading tests.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="job reveal" data-cat="edu">
+        <div class="job-when">2011 – 2016<span class="tag edu">K–12</span></div>
+        <div>
+          <div class="job-title">High School World Language Arabic Teacher (IB DP)</div>
+          <div class="job-org">American Youth Academy <span>· Tampa, Florida</span></div>
+          <ul>
+            <li>Taught Modern Standard and Egyptian Arabic in a student-centered, technology-integrated environment.</li>
+            <li>Designed the school's Arabic curriculum based on Florida Standards for Foreign Language.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="job reveal" data-cat="edu">
+        <div class="job-when">2004 – 2011<span class="tag edu">Education</span></div>
+        <div>
+          <div class="job-title">Earlier Instruction — Arabic &amp; ESL</div>
+          <div class="job-org">Intl. Language Institute (Cairo) · Ramapo College (NJ) · Benha Secondary School (Egypt)</div>
+          <ul>
+            <li>Taught listening, reading, writing, and speaking in Modern Standard and Egyptian Arabic; developed curricula, tests, and exams.</li>
+            <li>Delivered English language instruction, including individualized plans for students with special needs.</li>
+          </ul>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- COVER LETTER -->
+<section id="letter">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-num">03</span>
+      <h2 class="sec-title">Cover Letter</h2>
+    </div>
+    <div class="letter reveal">
+      <div class="salut">Dear Hiring Team,</div>
+      <p>I am writing to express my interest in roles across Arabic AI data training, data quality analysis, and AI red-teaming and safety. As a native Modern Standard and Egyptian Arabic linguist with <span class="hl">over 20 years in language instruction, assessment, and curriculum development</span>, and more than two years in AI evaluation, annotation, and safety review, I bring native fluency, sociocultural insight, and disciplined evaluation methods to each of these areas.</p>
+      <p>As an Arabic AI data trainer, I work daily at the intersection of language and machine learning. At Cohere I translate multimodal ML and human-authored texts between English and Arabic, label and rank training data in Modern Standard Arabic, and apply International Phonetics to capture dialectal and phonological variation. Across roles at Translated (Uber), Outlier, Invisible Technologies, and Alignerr, I have annotated and evaluated text and audio datasets, recorded dialect-accurate Arabic speech for voice-model training, and contributed to annotation guidelines for dialect and pronunciation tagging. My published Arabic textbooks and research on diglossia and language attitudes ground this work in <span class="hl">culturally authentic, dialect-accurate language</span> rather than translated approximations.</p>
+      <p>As a Senior Data Quality Analyst at Cohere, I evaluate Arabic LLM outputs against detailed style guides and rubrics for accuracy, safety, and consistency, perform response ranking, and flag opportunities to improve data quality and model performance. My work in standards-based assessment reinforces this: I built Arabic reading-comprehension tests for CUNY Queens College, designed standards-aligned curricula for North Carolina Virtual Public Schools, and serve as an ACTFL ILR OPI tester and rater. That experience trained me to calibrate content precisely to difficulty, intent, and explicit criteria, and to document findings with defensible, repeatable reasoning.</p>
+      <p>On the safety and red-teaming side, my experience is both applied and formally credentialed. I am a certified Red-Teaming Fellow (Mercor), and at Invisible Technologies I conducted safety evaluations on Arabic and English generative outputs, reviewing and categorizing sensitive content such as hate speech, misinformation, and harmful material. At Cohere I label safety content across multiple categories and assess outputs for policy adherence. This pairing of formal red-teaming training with hands-on detection positions me to design and execute adversarial prompts, probe for jailbreaks and policy-evasion failure modes, and <span class="hl">translate findings into actionable safety insights with linguistic precision</span>.</p>
+      <p>What I bring consistently across all three areas is rigor and attention to detail: structured evaluation against clear criteria, accurate documentation, and reliable delivery under deadlines. I would welcome the opportunity, including any screening exam or task, to demonstrate this directly. Thank you for your consideration.</p>
+      <div class="sign">Mahmoud Mansour<small>Arabic AI Language Specialist · Linguist</small></div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERTISE -->
+<section id="expertise">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-num">04</span>
+      <h2 class="sec-title">Areas of Expertise</h2>
+    </div>
+    <div class="exp-grid">
+      <div class="exp-card reveal">
+        <h3><span class="n">AI</span>Language Technology</h3>
+        <div class="tags">
+          <span>Arabic AI data annotation &amp; training</span>
+          <span>LLM evaluation &amp; ranking</span>
+          <span>Response assessment</span>
+          <span>AI safety evaluation</span>
+          <span>Content classification</span>
+          <span>Red-teaming &amp; adversarial (jailbreak) evaluation</span>
+          <span>Multimodal translation &amp; review</span>
+          <span>Arabic linguistic QA</span>
+          <span>Dialect &amp; phonetic analysis</span>
+          <span>Prompt evaluation</span>
+          <span>Speech &amp; voice data evaluation</span>
+          <span>Data quality analysis</span>
+        </div>
+      </div>
+      <div class="exp-card reveal">
+        <h3><span class="n">ع</span>Linguistics &amp; Education</h3>
+        <div class="tags">
+          <span>Modern Standard Arabic instruction</span>
+          <span>Egyptian Arabic specialization</span>
+          <span>Curriculum development</span>
+          <span>Assessment &amp; test design</span>
+          <span>ACTFL ILR proficiency evaluation</span>
+          <span>Reading comprehension development</span>
+          <span>Adult language instruction</span>
+          <span>K–12 world language instruction</span>
+          <span>Instructional material design</span>
+          <span>Language acquisition strategies</span>
+          <span>Diglossia &amp; dialectology</span>
+          <span>Academic &amp; professional writing</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CREDENTIALS -->
+<section id="credentials">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-num">05</span>
+      <h2 class="sec-title">Education &amp; Credentials</h2>
+    </div>
+    <div class="cred-grid">
+      <div class="cred-col reveal">
+        <h3>Education</h3>
+        <div class="edu-item">
+          <div class="deg">M.A. in Arabic Studies</div>
+          <div class="inst">Middlebury College · Vermont, USA · 2017</div>
+        </div>
+        <div class="edu-item">
+          <div class="deg">B.A. in English Language &amp; Literature</div>
+          <div class="inst">Benha University · Egypt · 2004</div>
+        </div>
+
+        <h3 style="margin-top:42px">Professional Training</h3>
+        <ul class="cert-list">
+          <li><span class="c-name">Stanford — Putting the Standards Front and Center; Facilitating a Learner-Centered Classroom</span><span class="c-year">2021</span></li>
+          <li><span class="c-name">Harvard — Project Zero: Making Thinking Visible</span><span class="c-year">2020</span></li>
+          <li><span class="c-name">Online Arabic AFL Teaching Training</span><span class="c-year">2016</span></li>
+        </ul>
+
+        <div class="pub-block">
+          <h3>Publications &amp; Research</h3>
+          <div class="book">Bil-Araby El-FaseeH</div>
+          <div class="meta">Beginner &amp; Intermediate Arabic Textbooks · 2013</div>
+          <ul class="research" style="margin-top:18px">
+            <li>The Impact of Diglossia on Education in the Arab World</li>
+            <li>Language Attitudes in Political Discourse</li>
+          </ul>
+          <div class="meta" style="margin-top:18px">ACTFL Member #174008 · American Association of Teachers of Arabic Member #31754593</div>
+        </div>
+      </div>
+
+      <div class="cred-col reveal">
+        <h3>Certifications</h3>
+        <ul class="cert-list">
+          <li><span class="c-name">Mercor Red-Teaming Fellow (AI Safety &amp; Red-Teaming)</span><span class="c-year">2026</span></li>
+          <li><span class="c-name">Mercor Bilingual Proficient (Arabic &amp; English)</span><span class="c-year">2026</span></li>
+          <li><span class="c-name">IB MYP Arabic Language Acquisition Certificate</span><span class="c-year">2022</span></li>
+          <li><span class="c-name">North Carolina Public Schools Teacher License (Arabic K–12)</span><span class="c-year">2022</span></li>
+          <li><span class="c-name">StarTalk Arabic Flagship Certificate</span><span class="c-year">2021</span></li>
+          <li><span class="c-name">Virginia Public Schools Teacher License (Arabic K–12)</span><span class="c-year">2020</span></li>
+          <li><span class="c-name">ACTFL ILR OPI Egyptian Arabic Tester &amp; Rater</span><span class="c-year">2019</span></li>
+          <li><span class="c-name">IB DP Arabic Language B Certificate</span><span class="c-year">2014</span></li>
+          <li><span class="c-name">Fulbright Foreign Language Teaching Assistant</span><span class="c-year">2009</span></li>
+        </ul>
+
+        <h3 style="margin-top:42px">Technical &amp; Professional Skills</h3>
+        <div class="tags">
+          <span>MS Office Suite</span>
+          <span>Canvas LMS</span>
+          <span>Zoom · MS Teams · Skype</span>
+          <span>Cross-functional collaboration</span>
+          <span>Educational technology integration</span>
+          <span>Quality assurance reporting</span>
+          <span>International Phonetics</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact" style="border-top:none">
+  <div class="wrap">
+    <div class="contact-card reveal">
+      <div class="ar">تواصل</div>
+      <div class="eyebrow">Get in touch</div>
+      <h2>Available for Arabic AI data, evaluation, safety &amp; red-teaming projects.</h2>
+      <div class="contact-links">
+        <a class="c-link" href="mailto:mmansour1288@icloud.com">
+          <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+          mmansour1288@icloud.com</a>
+        <a class="c-link" href="tel:+13017677762">
+          <svg viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.4-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2Z"/></svg>
+          (301) 767-7762</a>
+        <button class="c-link print-btn" onclick="window.print()">
+          <svg viewBox="0 0 24 24"><path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2M6 14h12v8H6z"/></svg>
+          Print / Save as PDF</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">© <span id="yr"></span> Mahmoud Mansour · Ashburn, Virginia · MSA · Egyptian Arabic · English</div>
+</footer>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  // nav scroll state
+  const nav = document.getElementById('nav');
+  addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 24));
+
+  // mobile menu
+  const toggle = document.getElementById('navtoggle');
+  const links = document.getElementById('navlinks');
+  toggle.addEventListener('click', () => links.classList.toggle('open'));
+  links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
+
+  // experience filter
+  const jobs = document.querySelectorAll('.job');
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelector('.filter-btn.active').classList.remove('active');
+      btn.classList.add('active');
+      const f = btn.dataset.filter;
+      jobs.forEach(j => j.classList.toggle('hide', f !== 'all' && j.dataset.cat !== f));
+    });
+  });
+
+  // reveal on scroll
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+  }, {threshold:.12, rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.reveal').forEach((el,i) => {
+    el.style.transitionDelay = (Math.min(i,4)*60)+'ms';
+    io.observe(el);
+  });
+</script>
+</body>
+</html>
